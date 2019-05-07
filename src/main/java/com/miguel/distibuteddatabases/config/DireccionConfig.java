@@ -15,7 +15,7 @@ import java.util.Properties;
 
 @Configuration
 @DependsOn("transactionManager")
-@EnableJpaRepositories(/*basePackages = "com.miguel.distibuteddatabases.repository",*/entityManagerFactoryRef = "twoEntityManager")
+@EnableJpaRepositories(/*basePackages = "com.miguel.distibuteddatabases.repository"*/entityManagerFactoryRef = "twoEntityManager")
 //@EnableConfigurationProperties
 public class DireccionConfig {
 

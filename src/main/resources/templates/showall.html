@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Vista A</title>
+</head>
+<body>
+
+<h3>Tabla 1</h3>
+<table border=1>
+    <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+    </tr>
+    <tr th:each = "p : ${personas}">
+        <td th:text="${p.id}"/>
+        <td th:text="${p.nombre}"/>
+        <td th:text="${p.apellido}"/>
+    </tr>
+
+</table>
+<br/>
+
+<h3>Tabla 2</h3>
+<table border=1>
+    <tr>
+        <th>Id</th>
+        <th>Calle</th>
+        <th>Numero</th>
+        <th>Ciudad</th>
+    </tr>
+    <tr th:each = "d : ${direcciones}">
+        <td th:text="${d.id}"/>
+        <td th:text="${d.calle}"/>
+        <td th:text="${d.numero}"/>
+        <td th:text="${d.ciudad}"/>
+    </tr>
+
+</table>
+
+<br/>
+
+<form action="#" th:action="@{/process}">
+    <button type="submit">Add</button>
+</form>
+
+
+
+</body>
+</html>
