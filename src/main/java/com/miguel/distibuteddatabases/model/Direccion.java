@@ -1,4 +1,4 @@
-package com.miguel.distibuteddatabases.Model;
+package com.miguel.distibuteddatabases.model;
 
 import javax.persistence.*;
 

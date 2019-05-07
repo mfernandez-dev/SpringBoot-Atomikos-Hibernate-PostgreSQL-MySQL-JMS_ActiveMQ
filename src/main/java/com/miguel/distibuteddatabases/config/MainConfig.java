@@ -1,4 +1,4 @@
-package com.miguel.distibuteddatabases.Config;
+package com.miguel.distibuteddatabases.config;
 
 import com.atomikos.icatch.jta.UserTransactionImp;
 import com.atomikos.icatch.jta.UserTransactionManager;

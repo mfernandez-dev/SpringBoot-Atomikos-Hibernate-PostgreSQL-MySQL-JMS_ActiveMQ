@@ -1,4 +1,4 @@
-package com.miguel.distibuteddatabases.Config;
+package com.miguel.distibuteddatabases.config;
 
 import com.atomikos.jdbc.AtomikosDataSourceBean;
 import com.mysql.cj.jdbc.MysqlXADataSource;
@@ -47,7 +47,7 @@ public class PersonaConfig {
         LocalContainerEntityManagerFactoryBean entityManager = new LocalContainerEntityManagerFactoryBean();
         entityManager.setJtaDataSource(oneDataSource());
         entityManager.setJpaVendorAdapter(jpaVendorAdapter);            //NO DEBERIA SER LA DEL MainClass
-        entityManager.setPackagesToScan("com.miguel.distibuteddatabases.Model");
+        entityManager.setPackagesToScan("com.miguel.distibuteddatabases.model");
         entityManager.setPersistenceUnitName("onePersistenceUnit");
         entityManager.setJpaPropertyMap(properties);
         return entityManager;

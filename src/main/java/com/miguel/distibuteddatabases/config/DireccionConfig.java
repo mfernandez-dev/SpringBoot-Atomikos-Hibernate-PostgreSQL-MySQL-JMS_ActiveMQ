@@ -1,4 +1,4 @@
-package com.miguel.distibuteddatabases.Config;
+package com.miguel.distibuteddatabases.config;
 
 import com.atomikos.jdbc.AtomikosDataSourceBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +48,7 @@ public class DireccionConfig {
         LocalContainerEntityManagerFactoryBean entityManager = new LocalContainerEntityManagerFactoryBean();
         entityManager.setJtaDataSource(twoDataSource());
         entityManager.setJpaVendorAdapter(jpaVendorAdapter);   //No deberia ser asi
-        entityManager.setPackagesToScan("com.miguel.distibuteddatabases.Model");
+        entityManager.setPackagesToScan("com.miguel.distibuteddatabases.model");
         entityManager.setPersistenceUnitName("twoPersistenceUnit");
         entityManager.setJpaPropertyMap(properties);
         return entityManager;

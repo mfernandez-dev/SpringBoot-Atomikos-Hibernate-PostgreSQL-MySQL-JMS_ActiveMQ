@@ -1,4 +1,4 @@
-package com.miguel.distibuteddatabases.Config;
+package com.miguel.distibuteddatabases.config;
 
 import org.hibernate.engine.transaction.jta.platform.internal.AbstractJtaPlatform;
 
