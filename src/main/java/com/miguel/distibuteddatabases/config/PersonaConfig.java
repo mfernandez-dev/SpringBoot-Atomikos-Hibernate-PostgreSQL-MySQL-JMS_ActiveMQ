@@ -3,6 +3,7 @@ package com.miguel.distibuteddatabases.config;
 import com.atomikos.jdbc.AtomikosDataSourceBean;
 import com.mysql.cj.jdbc.MysqlXADataSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
@@ -23,6 +24,7 @@ import java.util.HashMap;
 public class PersonaConfig {
 
     @Autowired
+    @Qualifier(value = "mySqlJpaVendorAdapter")
     private JpaVendorAdapter jpaVendorAdapter;
 
     @Bean(name = "oneDataSource" /*intiMethod,destroyMethod*/)

@@ -2,6 +2,7 @@ package com.miguel.distibuteddatabases.config;
 
 import com.atomikos.jdbc.AtomikosDataSourceBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
@@ -20,6 +21,7 @@ import java.util.Properties;
 public class DireccionConfig {
 
     @Autowired
+    @Qualifier(value = "psqlJpaVendorAdapter")
     private JpaVendorAdapter jpaVendorAdapter;
 
     @Bean(name = "twoDataSource"/*, initMethod = "init", destroyMethod = "close"*/)

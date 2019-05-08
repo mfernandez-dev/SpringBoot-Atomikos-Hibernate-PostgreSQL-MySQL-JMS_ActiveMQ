@@ -35,6 +35,14 @@ public class MainConfig {
         return hibernateJpaVendorAdapter;
     }
 
+    @Bean(name = "psqlJpaVendorAdapter")
+    public JpaVendorAdapter psJpaVendorAdapter(){
+        HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
+        hibernateJpaVendorAdapter.setShowSql(true);
+        hibernateJpaVendorAdapter.setDatabase(Database.POSTGRESQL);
+        return hibernateJpaVendorAdapter;
+    }
+
     @Bean(name = "UserTransaction")
     public UserTransaction userTransaction() throws Throwable{
         UserTransactionImp userTransactionImp = new UserTransactionImp();
