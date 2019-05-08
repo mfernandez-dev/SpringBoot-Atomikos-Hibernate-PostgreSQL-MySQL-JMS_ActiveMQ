@@ -27,7 +27,7 @@ public class PersonaConfig {
     @Qualifier(value = "mySqlJpaVendorAdapter")
     private JpaVendorAdapter jpaVendorAdapter;
 
-    @Bean(name = "oneDataSource" /*intiMethod,destroyMethod*/)
+    @Bean(name = "oneDataSource" , initMethod = "init", destroyMethod = "close")
     public DataSource oneDataSource () throws SQLException{
         MysqlXADataSource mysqlXADataSource = new MysqlXADataSource();
         mysqlXADataSource.setUrl("jdbc:mysql://localhost:3306/one");

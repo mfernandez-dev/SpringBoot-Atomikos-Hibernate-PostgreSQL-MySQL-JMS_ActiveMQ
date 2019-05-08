@@ -24,7 +24,7 @@ public class DireccionConfig {
     @Qualifier(value = "psqlJpaVendorAdapter")
     private JpaVendorAdapter jpaVendorAdapter;
 
-    @Bean(name = "twoDataSource"/*, initMethod = "init", destroyMethod = "close"*/)
+    @Bean(name = "twoDataSource", initMethod = "init", destroyMethod = "close")
     public DataSource twoDataSource() {
         AtomikosDataSourceBean ds = new AtomikosDataSourceBean();
         ds.setUniqueResourceName("postgres");
