@@ -2,8 +2,8 @@ package com.miguel.distibuteddatabases.service;
 
 import com.miguel.distibuteddatabases.model.Direccion;
 import com.miguel.distibuteddatabases.model.Persona;
-import com.miguel.distibuteddatabases.repository.DireccionDao;
-import com.miguel.distibuteddatabases.repository.PersonaDao;
+import com.miguel.distibuteddatabases.repository.direccion.DireccionDao;
+import com.miguel.distibuteddatabases.repository.persona.PersonaDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

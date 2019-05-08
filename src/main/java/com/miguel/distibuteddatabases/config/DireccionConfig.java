@@ -15,7 +15,7 @@ import java.util.Properties;
 
 @Configuration
 @DependsOn("transactionManager")
-@EnableJpaRepositories(/*basePackages = "com.miguel.distibuteddatabases.repository"*/entityManagerFactoryRef = "twoEntityManager")
+@EnableJpaRepositories(basePackages = "com.miguel.distibuteddatabases.repository.direccion", entityManagerFactoryRef = "twoEntityManager")
 //@EnableConfigurationProperties
 public class DireccionConfig {
 
@@ -37,7 +37,7 @@ public class DireccionConfig {
         return ds;
     }
 
-    @Bean(name = "twoEntityManger")
+    @Bean(name = "twoEntityManager")
     @DependsOn("transactionManager")
     public LocalContainerEntityManagerFactoryBean orderEntityManger() throws Throwable{
 

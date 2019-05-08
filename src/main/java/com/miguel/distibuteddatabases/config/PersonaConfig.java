@@ -18,7 +18,7 @@ import java.util.HashMap;
 @Configuration
 @Primary
 @DependsOn("transactionManager")
-@EnableJpaRepositories(basePackages = "com.miguel.distibuteddatabases.repository", entityManagerFactoryRef = "oneEntityManager")
+@EnableJpaRepositories(basePackages = "com.miguel.distibuteddatabases.repository.persona", entityManagerFactoryRef = "oneEntityManager")
 //@EnableConfigurationProperties
 public class PersonaConfig {
 
