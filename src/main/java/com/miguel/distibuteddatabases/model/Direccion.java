@@ -7,7 +7,6 @@ import javax.persistence.*;
 public class Direccion {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     private long id;
 
@@ -23,7 +22,8 @@ public class Direccion {
     public Direccion() {
     }
 
-    public Direccion(String calle, int numero, String ciudad) {
+    public Direccion(long id, String calle, int numero, String ciudad) {
+        this.id = id;
         this.calle = calle;
         this.numero = numero;
         this.ciudad = ciudad;

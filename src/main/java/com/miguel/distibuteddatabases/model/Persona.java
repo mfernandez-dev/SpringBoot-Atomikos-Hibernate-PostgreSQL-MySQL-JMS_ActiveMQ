@@ -7,7 +7,6 @@ import javax.persistence.*;
 public class Persona {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
     private long id;
 
@@ -20,7 +19,8 @@ public class Persona {
     public Persona() {
     }
 
-    public Persona(String nombre, String apellido) {
+    public Persona(long id, String nombre, String apellido) {
+        this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
     }

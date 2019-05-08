@@ -28,6 +28,16 @@ public class InsertServiceImpl implements InsertService {
     }
 
     @Override
+    public void save(Persona pers){
+        personaDao.save(pers);
+    }
+
+    @Override
+    public void save(Direccion dir){
+        dirDao.save(dir);
+    }
+
+    @Override
     public List<Persona> mostrarPersona() {
         List<Persona> x = new ArrayList(personaDao.findAll());
         return x;
