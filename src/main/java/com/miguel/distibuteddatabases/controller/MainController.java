@@ -5,6 +5,7 @@ import com.miguel.distibuteddatabases.model.Persona;
 import com.miguel.distibuteddatabases.service.InsertService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,13 +24,20 @@ public class MainController {
     }
 
     @RequestMapping(value = {"/process"})
-    public ModelAndView insert () {
-        Persona p = new Persona("Paco", "Estevez");
-        Direccion d = new Direccion("Herradura", 25, "Coruna");
-        insertService.save(p, d);
+    public ModelAndView insert(@ModelAttribute("persona") Persona p, @ModelAttribute("direccion") Direccion d){
+        insertService.save(p,d);
         ModelAndView mav = new ModelAndView("showall");
         mav.addObject("personas", insertService.mostrarPersona());
         mav.addObject("direcciones", insertService.mostrarDireccion());
         return mav;
+    }
+
+    @RequestMapping(value = {"/insert/user"})
+    public ModelAndView setUser () {
+        ModelAndView mav = new ModelAndView("inserta_usuario");
+        mav.addObject("persona", new Persona());
+        mav.addObject("direccion", new Direccion());
+        return mav;
+
     }
 }
