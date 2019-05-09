@@ -6,13 +6,15 @@ import com.miguel.distibuteddatabases.repository.direccion.DireccionDao;
 import com.miguel.distibuteddatabases.repository.persona.PersonaDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
+
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@Transactional
+@Transactional(propagation = Propagation.REQUIRES_NEW)
 public class InsertServiceImpl implements InsertService {
 
     @Autowired

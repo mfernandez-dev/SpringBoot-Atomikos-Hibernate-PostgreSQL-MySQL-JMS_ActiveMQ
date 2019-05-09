@@ -34,7 +34,7 @@ public class MainController {
 
     @RequestMapping(value = {"/insert/user"})
     public ModelAndView setUser () {
-        ModelAndView mav = new ModelAndView("inserta_usuario");
+        ModelAndView mav = new ModelAndView("insertform");
         mav.addObject("persona", new Persona());
         mav.addObject("direccion", new Direccion());
         return mav;
