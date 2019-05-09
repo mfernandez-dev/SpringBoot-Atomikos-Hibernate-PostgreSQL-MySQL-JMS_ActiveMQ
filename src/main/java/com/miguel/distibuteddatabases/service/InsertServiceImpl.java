@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRES_NEW)
@@ -27,6 +28,11 @@ public class InsertServiceImpl implements InsertService {
     public void save(Persona pers, Direccion dir) {
         personaDao.save(pers);
         dirDao.save(dir);
+    }
+
+    @Override
+    public Optional<Persona> edit(long id) {
+       return personaDao.findById(id);
     }
 
     @Override

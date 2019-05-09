@@ -17,6 +17,11 @@
         <td th:text="${p.id}"/>
         <td th:text="${p.nombre}"/>
         <td th:text="${p.apellido}"/>
+        <td>
+            <div th:with="editPers=@{/edit(personaid=${p.id})}">
+                <a th:href="${editPers}">Editar</a>
+            </div>
+        </td>
     </tr>
 
 </table>
