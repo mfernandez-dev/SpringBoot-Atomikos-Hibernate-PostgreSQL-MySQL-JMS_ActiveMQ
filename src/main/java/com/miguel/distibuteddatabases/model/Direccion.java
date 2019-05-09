@@ -7,6 +7,7 @@ import javax.persistence.*;
 public class Direccion {
 
     @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
 
@@ -22,8 +23,7 @@ public class Direccion {
     public Direccion() {
     }
 
-    public Direccion(long id, String calle, int numero, String ciudad) {
-        this.id = id;
+    public Direccion(String calle, int numero, String ciudad) {
         this.calle = calle;
         this.numero = numero;
         this.ciudad = ciudad;

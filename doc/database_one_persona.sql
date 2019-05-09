@@ -1,5 +1,5 @@
 CREATE TABLE one.persona (
-	id BIGINT NOT NULL,
+	id BIGINT NOT NULL auto_increment,
 	nombre varchar(100) NULL,
 	apellido varchar(100) NULL,
 	CONSTRAINT persona_pk PRIMARY KEY (id)

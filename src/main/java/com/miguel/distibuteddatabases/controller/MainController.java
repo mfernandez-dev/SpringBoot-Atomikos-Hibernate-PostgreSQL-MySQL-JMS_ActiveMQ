@@ -23,15 +23,13 @@ public class MainController {
     }
 
     @RequestMapping(value = {"/process"})
-    public ModelAndView insert (){
-        Persona p = new Persona(1L, "Paco", "Estevez");
-        Direccion d = new Direccion(1L, "Herradura", 25, "Coruna");
-        insertService.save(p,d);
+    public ModelAndView insert () {
+        Persona p = new Persona("Paco", "Estevez");
+        Direccion d = new Direccion("Herradura", 25, "Coruna");
+        insertService.save(p, d);
         ModelAndView mav = new ModelAndView("showall");
         mav.addObject("personas", insertService.mostrarPersona());
         mav.addObject("direcciones", insertService.mostrarDireccion());
         return mav;
     }
-
-
 }
