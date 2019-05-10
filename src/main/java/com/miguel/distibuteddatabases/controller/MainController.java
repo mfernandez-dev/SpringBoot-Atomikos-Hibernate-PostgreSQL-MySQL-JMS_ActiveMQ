@@ -63,4 +63,21 @@ public class MainController {
         return mav;
     }
 
+    @RequestMapping(value = {"/delete/persona"})
+    public ModelAndView deletePers(@RequestParam("personaid") long id){
+        insertService.deletePers(id);
+        ModelAndView mav = new ModelAndView("showall");
+        mav.addObject("personas", insertService.mostrarPersona());
+        mav.addObject("direcciones", insertService.mostrarDireccion());
+        return mav;
+    }
+
+    @RequestMapping(value = {"/delete/direccion"})
+    public ModelAndView deleteDir(@RequestParam("dirid") long id){
+        insertService.deleteDir(id);
+        ModelAndView mav = new ModelAndView("showall");
+        mav.addObject("personas", insertService.mostrarPersona());
+        mav.addObject("direcciones", insertService.mostrarDireccion());
+        return mav;
+    }
 }

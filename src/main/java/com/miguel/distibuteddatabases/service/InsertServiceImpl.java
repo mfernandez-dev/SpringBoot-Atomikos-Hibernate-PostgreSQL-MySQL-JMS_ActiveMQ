@@ -31,17 +31,6 @@ public class InsertServiceImpl implements InsertService{
     }
 
     @Override
-    public Optional<Persona> edit(long id) {
-       return personaDao.findById(id);
-    }
-
-    @Override
-    public Optional<Direccion> editDir(long id) {
-        return dirDao.findById(id);
-    }
-
-
-    @Override
     public void save(Persona pers){
         personaDao.save(pers);
     }
@@ -49,6 +38,16 @@ public class InsertServiceImpl implements InsertService{
     @Override
     public void save(Direccion dir){
         dirDao.save(dir);
+    }
+
+    @Override
+    public Optional<Persona> edit(long id) {
+       return personaDao.findById(id);
+    }
+
+    @Override
+    public Optional<Direccion> editDir(long id) {
+        return dirDao.findById(id);
     }
 
     @Override
@@ -61,5 +60,15 @@ public class InsertServiceImpl implements InsertService{
     public List<Direccion> mostrarDireccion() {
         List<Direccion> x = new ArrayList(dirDao.findAll());
         return x;
+    }
+
+    @Override
+    public void deletePers(long id) {
+        personaDao.deleteById(id);
+    }
+
+    @Override
+    public void deleteDir(long id) {
+        dirDao.deleteById(id);
     }
 }
