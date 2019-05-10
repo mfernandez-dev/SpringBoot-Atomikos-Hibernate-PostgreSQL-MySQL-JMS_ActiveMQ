@@ -12,6 +12,8 @@ public interface InsertService {
 
     Optional<Persona> edit (long id);
 
+    Optional<Direccion> editDir (long id);
+
     void save (Persona pers);
 
     void save (Direccion dir);

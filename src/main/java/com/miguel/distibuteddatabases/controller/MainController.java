@@ -26,7 +26,7 @@ public class MainController {
 
     @RequestMapping(value = {"/process"})
     public ModelAndView insert(@ModelAttribute("persona") Persona p, @ModelAttribute("direccion") Direccion d){
-        if ((d.getCalle() != "" && d.getCalle() != null) && (p.getNombre() != "" && p.getNombre() != ""))
+        if ((d.getCalle() != "" && d.getCalle() != null) && (p.getNombre() != "" && p.getNombre() != null))
             insertService.save(p, d);
             else
                 if ((d.getCalle() == "" || d.getCalle() == null)  && p.getNombre() != "" && p.getNombre() != null)
@@ -49,10 +49,17 @@ public class MainController {
         return mav;
     }
 
-    @RequestMapping(value = {"/edit"})
+    @RequestMapping(value = {"/edit/persona"})
     public ModelAndView edit (@RequestParam("personaid") long id){
         ModelAndView mav = new ModelAndView("editpers");
         mav.addObject("persona", insertService.edit(id));
+        return mav;
+    }
+
+    @RequestMapping(value = {"/edit/direccion"})
+    public ModelAndView editDir (@RequestParam("dirid") long id){
+        ModelAndView mav = new ModelAndView("editdir");
+        mav.addObject("direccion", insertService.editDir(id));
         return mav;
     }
 

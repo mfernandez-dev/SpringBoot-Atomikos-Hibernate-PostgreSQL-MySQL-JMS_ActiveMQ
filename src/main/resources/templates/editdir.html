@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Insertar</title>
+</head>
+<body>
+<h2>Inserccion</h2>
+
+<form action="#" th:action="@{/process}" method="post">
+    <p>Id: <input type="text" th:field="*{direccion.id}"></p>
+    <p>Calle: <input type="text" th:field="*{direccion.calle}"/>
+    <p>Numero: <input type="text" th:field="*{direccion.numero}"/>
+    <p>Ciudad: <input type="text" th:field="*{direccion.ciudad}"</p>
+        <button type="submit">Add</button>
+</form>
+
+</body>
+</html>

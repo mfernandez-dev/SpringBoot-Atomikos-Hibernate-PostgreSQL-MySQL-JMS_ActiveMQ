@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRES_NEW)
-public class InsertServiceImpl implements InsertService {
+public class InsertServiceImpl implements InsertService{
 
     @Autowired
     private PersonaDao personaDao;
@@ -34,6 +34,12 @@ public class InsertServiceImpl implements InsertService {
     public Optional<Persona> edit(long id) {
        return personaDao.findById(id);
     }
+
+    @Override
+    public Optional<Direccion> editDir(long id) {
+        return dirDao.findById(id);
+    }
+
 
     @Override
     public void save(Persona pers){

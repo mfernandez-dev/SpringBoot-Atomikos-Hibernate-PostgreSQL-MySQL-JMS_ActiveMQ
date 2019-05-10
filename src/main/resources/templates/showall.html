@@ -18,7 +18,7 @@
         <td th:text="${p.nombre}"/>
         <td th:text="${p.apellido}"/>
         <td>
-            <div th:with="editPers=@{/edit(personaid=${p.id})}">
+            <div th:with="editPers=@{/edit/persona(personaid=${p.id})}">
                 <a th:href="${editPers}">Editar</a>
             </div>
         </td>
@@ -41,6 +41,11 @@
         <td th:text="${d.calle}"/>
         <td th:text="${d.numero}"/>
         <td th:text="${d.ciudad}"/>
+        <td>
+            <div th:with="editDir=@{/edit/direccion(dirid=${d.id})}">
+                <a th:href="${editDir}">Editar</a>
+            </div>
+        </td>
     </tr>
 
 </table>
