@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Transactional(propagation = Propagation.REQUIRES_NEW)
+@Transactional(propagation = Propagation.REQUIRES_NEW)                                                                      //para que no salte el bug hay que cambiar el propagation o el isolation
 public class InsertServiceImpl implements InsertService{
 
     @Autowired
