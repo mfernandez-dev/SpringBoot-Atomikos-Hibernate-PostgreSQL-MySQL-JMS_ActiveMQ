@@ -1,6 +1,6 @@
 package com.miguel.distibuteddatabases.repository.dto;
 
-public class direccionDto {
+public class DireccionDto {
 
     private String calle;
 
@@ -8,10 +8,10 @@ public class direccionDto {
 
     private String ciudad;
 
-    public direccionDto() {
+    public DireccionDto() {
     }
 
-    public direccionDto(String calle, int numero, String ciudad) {
+    public DireccionDto(String calle, int numero, String ciudad) {
         this.calle = calle;
         this.numero = numero;
         this.ciudad = ciudad;
@@ -43,7 +43,7 @@ public class direccionDto {
 
     @Override
     public String toString() {
-        return "direccionDto{" +
+        return "DireccionDto{" +
                 "calle='" + calle + '\'' +
                 ", numero=" + numero +
                 ", ciudad='" + ciudad + '\'' +

@@ -2,13 +2,18 @@ package com.miguel.distibuteddatabases.controller;
 
 import com.miguel.distibuteddatabases.model.Direccion;
 import com.miguel.distibuteddatabases.model.Persona;
+import com.miguel.distibuteddatabases.repository.dto.PersonaDto;
 import com.miguel.distibuteddatabases.service.InsertService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.jms.Queue;
 
 @Controller
 public class MainController {
@@ -80,4 +85,22 @@ public class MainController {
         mav.addObject("direcciones", insertService.mostrarDireccion());
         return mav;
     }
+//--------------------------------------------------------------------------------------------------------------
+
+    @Autowired
+    private Queue queue;
+
+    @Autowired
+    private JmsTemplate jmsTemplate;
+
+    @RequestMapping("/publish")
+    public ModelAndView publish (@ModelAttribute("persona") PersonaDto p){
+        jmsTemplate.convertAndSend(queue,p);
+        ModelAndView mav = new ModelAndView("showall");
+        mav.addObject("personas", insertService.mostrarPersona());
+        mav.addObject("direcciones", insertService.mostrarDireccion());
+        return mav;
+    }
+
+
 }

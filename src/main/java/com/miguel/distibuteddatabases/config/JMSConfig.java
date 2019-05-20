@@ -24,6 +24,7 @@ public class JMSConfig {
     public ActiveMQConnectionFactory connectionFactory(){
         ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory();
         factory.setBrokerURL(activeMqUrl);
+        factory.setTrustAllPackages(true);
         return factory;
     }
 
