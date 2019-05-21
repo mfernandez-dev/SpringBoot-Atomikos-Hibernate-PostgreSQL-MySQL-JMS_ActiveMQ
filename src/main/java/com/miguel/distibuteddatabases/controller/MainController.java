@@ -3,6 +3,7 @@ package com.miguel.distibuteddatabases.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.miguel.distibuteddatabases.model.Direccion;
 import com.miguel.distibuteddatabases.model.Persona;
+import com.miguel.distibuteddatabases.repository.dto.DireccionDto;
 import com.miguel.distibuteddatabases.repository.dto.PersonaDto;
 import com.miguel.distibuteddatabases.service.InsertService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,30 @@ public class MainController {
     @Autowired
     private InsertService insertService;
 
+    @Autowired
+    private Queue queue;
+
+    @Autowired
+    private Queue queueb;
+
+    @Autowired
+    private JmsTemplate jmsTemplate;
+
     @RequestMapping(value = {"/"})
     public ModelAndView showAll() {
+        ModelAndView mav = new ModelAndView("showall");
+        mav.addObject("personas", insertService.mostrarPersona());
+        mav.addObject("direcciones", insertService.mostrarDireccion());
+        return mav;
+    }
+
+    @RequestMapping("/publish")
+    public ModelAndView publish (@ModelAttribute("persona") PersonaDto p, @ModelAttribute("direccion") DireccionDto d) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String  personita = objectMapper.writeValueAsString(p);
+        String direccionita = objectMapper.writeValueAsString(d);
+        jmsTemplate.convertAndSend(queue,personita);
+        jmsTemplate.convertAndSend(queueb,direccionita);
         ModelAndView mav = new ModelAndView("showall");
         mav.addObject("personas", insertService.mostrarPersona());
         mav.addObject("direcciones", insertService.mostrarDireccion());
@@ -86,24 +109,4 @@ public class MainController {
         mav.addObject("direcciones", insertService.mostrarDireccion());
         return mav;
     }
-//--------------------------------------------------------------------------------------------------------------
-
-    @Autowired
-    private Queue queue;
-
-    @Autowired
-    private JmsTemplate jmsTemplate;
-
-    @RequestMapping("/publish")
-    public ModelAndView publish (@ModelAttribute("persona") PersonaDto p) throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        String  personita = objectMapper.writeValueAsString(p);
-        jmsTemplate.convertAndSend(queue,personita);
-        ModelAndView mav = new ModelAndView("showall");
-        mav.addObject("personas", insertService.mostrarPersona());
-        mav.addObject("direcciones", insertService.mostrarDireccion());
-        return mav;
-    }
-
-
 }
