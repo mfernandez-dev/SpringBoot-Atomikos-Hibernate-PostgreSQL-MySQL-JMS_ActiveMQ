@@ -1,4 +1,4 @@
-package com.miguel.distibuteddatabases.controller;
+package com.miguel.distibuteddatabases.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.miguel.distibuteddatabases.model.Direccion;
@@ -20,15 +20,16 @@ public class Consumer {
     public void listener(String pers) throws IOException {
             ObjectMapper objectMapper = new ObjectMapper();
             Persona p = objectMapper.readValue(pers, Persona.class);
-            insertService.save(p);
+            if (!p.getNombre().equals(""))
+                insertService.save(p);
     }
 
     @JmsListener (destination = "simple-jms-queueb")
     public void listnerb(String dir) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         Direccion d = objectMapper.readValue(dir, Direccion.class);
-
-        insertService.save(d);
+        if (!d.getCalle().equals(""))
+            insertService.save(d);
     }
 
 }
