@@ -1,5 +1,6 @@
 package com.miguel.distibuteddatabases.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.miguel.distibuteddatabases.model.Direccion;
 import com.miguel.distibuteddatabases.model.Persona;
 import com.miguel.distibuteddatabases.repository.dto.PersonaDto;
@@ -7,13 +8,13 @@ import com.miguel.distibuteddatabases.service.InsertService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.jms.Queue;
+import java.io.IOException;
 
 @Controller
 public class MainController {
@@ -94,8 +95,10 @@ public class MainController {
     private JmsTemplate jmsTemplate;
 
     @RequestMapping("/publish")
-    public ModelAndView publish (@ModelAttribute("persona") PersonaDto p){
-        jmsTemplate.convertAndSend(queue,p);
+    public ModelAndView publish (@ModelAttribute("persona") PersonaDto p) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String  personita = objectMapper.writeValueAsString(p);
+        jmsTemplate.convertAndSend(queue,personita);
         ModelAndView mav = new ModelAndView("showall");
         mav.addObject("personas", insertService.mostrarPersona());
         mav.addObject("direcciones", insertService.mostrarDireccion());
