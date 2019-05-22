@@ -3,6 +3,7 @@ package com.miguel.distibuteddatabases.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.miguel.distibuteddatabases.model.Direccion;
 import com.miguel.distibuteddatabases.model.Persona;
+import com.miguel.distibuteddatabases.repository.dto.AllDataDto;
 import com.miguel.distibuteddatabases.repository.dto.DireccionDto;
 import com.miguel.distibuteddatabases.repository.dto.PersonaDto;
 import com.miguel.distibuteddatabases.service.InsertService;
@@ -26,8 +27,7 @@ public class MainController {
     @Autowired
     private Queue queue;
 
-    @Autowired
-    private Queue queueb;
+
 
     @Autowired
     private JmsTemplate jmsTemplate;
@@ -41,17 +41,27 @@ public class MainController {
     }
 
     @RequestMapping("/publish")
-    public ModelAndView publish (@ModelAttribute("persona") PersonaDto p, @ModelAttribute("direccion") DireccionDto d) throws IOException {
+    public ModelAndView publish (@ModelAttribute("all") AllDataDto all) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-        String  personita = objectMapper.writeValueAsString(p);
-        String direccionita = objectMapper.writeValueAsString(d);
-        jmsTemplate.convertAndSend(queue,personita);
-        jmsTemplate.convertAndSend(queueb,direccionita);
+        String  allDataDto = objectMapper.writeValueAsString(all);
+        jmsTemplate.convertAndSend(queue,allDataDto);
         ModelAndView mav = new ModelAndView("showall");
         mav.addObject("personas", insertService.mostrarPersona());
         mav.addObject("direcciones", insertService.mostrarDireccion());
         return mav;
     }
+//    @RequestMapping("/publish")
+//    public ModelAndView publish (@ModelAttribute("persona") PersonaDto p, @ModelAttribute("direccion") DireccionDto d) throws IOException {
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        String  personita = objectMapper.writeValueAsString(p);
+//        String direccionita = objectMapper.writeValueAsString(d);
+//        jmsTemplate.convertAndSend(queue,personita);
+//        jmsTemplate.convertAndSend(queueb,direccionita);
+//        ModelAndView mav = new ModelAndView("showall");
+//        mav.addObject("personas", insertService.mostrarPersona());
+//        mav.addObject("direcciones", insertService.mostrarDireccion());
+//        return mav;
+//    }
 
     @RequestMapping(value = {"/process"})
     public ModelAndView insert(@ModelAttribute("persona") Persona p, @ModelAttribute("direccion") Direccion d) {
@@ -63,20 +73,26 @@ public class MainController {
             else if (d.getCalle()!="" && d.getCalle() != null && (p.getNombre() == "" || p.getNombre() == null))
                 insertService.save(d);
         }
-
         ModelAndView mav = new ModelAndView("showall");
         mav.addObject("personas", insertService.mostrarPersona());
         mav.addObject("direcciones", insertService.mostrarDireccion());
         return mav;
     }
 
-    @RequestMapping(value = {"/insert/user"})
+    @RequestMapping(value = {"/insert/all"})
     public ModelAndView setData() {
         ModelAndView mav = new ModelAndView("insertform");
-        mav.addObject("persona", new Persona());
-        mav.addObject("direccion", new Direccion());
+        mav.addObject("all", new AllDataDto());
         return mav;
     }
+
+//    @RequestMapping(value = {"/insert/user"})
+//    public ModelAndView setData() {
+//        ModelAndView mav = new ModelAndView("insertform");
+//        mav.addObject("persona", new Persona());
+//        mav.addObject("direccion", new Direccion());
+//        return mav;
+//    }
 
     @RequestMapping(value = {"/edit/persona"})
     public ModelAndView edit(@RequestParam("personaid") long id) {

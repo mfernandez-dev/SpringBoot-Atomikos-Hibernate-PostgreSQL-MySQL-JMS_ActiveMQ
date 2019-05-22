@@ -17,15 +17,8 @@ public class JMSConfig {
 
     @Bean
     public Queue queue(){
-        return new ActiveMQQueue("simple-jms-queue");
+        return new ActiveMQQueue("cola-insert");
     }
-
-    @Bean
-    public Queue queueb(){
-        return new ActiveMQQueue("simple-jms-queueb");
-    }
-
-
 
     @Bean
     public ActiveMQConnectionFactory connectionFactory(){

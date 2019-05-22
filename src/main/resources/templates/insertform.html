@@ -8,12 +8,12 @@
 <h2>Inserccion</h2>
 
 <form action="#" th:action="@{/publish}" method="post">
-    <p>Nombre: <input type="text" th:field="*{persona.nombre}"/>
-    <p>Apellido: <input type="text" th:field="*{persona.apellido}"/>
+    <p>Nombre: <input type="text" th:field="*{all.nombre}"/>
+    <p>Apellido: <input type="text" th:field="*{all.apellido}"/>
         <br/><br/>
-    <p>Calle: <input type="text" th:field="*{direccion.calle}"/>
-    <p>Numero: <input type="text" th:field="*{direccion.numero}"/>
-    <p>Direccion: <input type="text" th:field="*{direccion.ciudad}"/>
+    <p>Calle: <input type="text" th:field="*{all.calle}"/>
+    <p>Numero: <input type="text" th:field="*{all.numero}"/>
+    <p>Direccion: <input type="text" th:field="*{all.ciudad}"/>
         <button type="submit">Add</button>
 </form>
 
