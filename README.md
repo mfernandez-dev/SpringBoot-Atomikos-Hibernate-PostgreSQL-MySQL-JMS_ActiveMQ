@@ -1,7 +1,7 @@
 # SpringBoot-Atomikos-Hibernate-PostgreSQL-MySQL
 
 En esta practica se muestra como realizar un CRUD basico con bases de datos distribuidas. Dichas bases de datos estan instanciadas en motores distintos. Una esta en MySQL y otra en PostgreeSQL. El proyecto está creado con Spring Boot, la conexion a la base de datos se realiza con atomikos y de la persistencia se encarga hibernate. La aplicacion usa Thymeleaf para las vistas y se implementan unas colas 
-para enviar los datos usando un gestor de ActiveMQ externo para encolar los mensajes.
+para enviar los datos usando un gestor de ActiveMQ externo para encolar los mensajes y mensajes JMS con formato JSON.
 
 ## Construido con 🛠️
 
@@ -12,6 +12,7 @@ para enviar los datos usando un gestor de ActiveMQ externo para encolar los mens
 * Hibernate
 * PostgreSQL
 * MySql
+* JMS
 * ActiveMQ
 
 ## Instalación/Configuracion 🔧
