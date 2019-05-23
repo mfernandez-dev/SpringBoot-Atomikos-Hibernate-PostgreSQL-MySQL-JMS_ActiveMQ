@@ -3,6 +3,7 @@ package com.miguel.distibuteddatabases.service;
 import com.miguel.distibuteddatabases.model.Direccion;
 import com.miguel.distibuteddatabases.model.Persona;
 import com.miguel.distibuteddatabases.repository.direccion.DireccionDao;
+import com.miguel.distibuteddatabases.repository.dto.DireccionDto;
 import com.miguel.distibuteddatabases.repository.dto.PersonaDto;
 import com.miguel.distibuteddatabases.repository.persona.PersonaDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,20 +55,27 @@ public class InsertServiceImpl implements InsertService{
     }
 
     @Override
-    public Optional<Direccion> editDir(long id) {
-        return dirDao.findById(id);
+    public DireccionDto editDir(long id) {
+        DireccionDto dir = new DireccionDto();
+        Optional<Direccion> d = dirDao.findById(id);
+        Direccion direccion = d.get();
+
+        dir.setId(direccion.getId());
+        dir.setCalle(direccion.getCalle());
+        dir.setNumero(direccion.getNumero());
+        dir.setCiudad(direccion.getCiudad());
+
+        return dir;
     }
 
     @Override
-    public List<Persona> mostrarPersona() {
-        List<Persona> x = new ArrayList(personaDao.findAll());
-        return x;
+    public ArrayList mostrarPersona() {
+        return new ArrayList<>(personaDao.findAll());
     }
 
     @Override
     public List<Direccion> mostrarDireccion() {
-        List<Direccion> x = new ArrayList(dirDao.findAll());
-        return x;
+        return new ArrayList<>(dirDao.findAll());
     }
 
     @Override

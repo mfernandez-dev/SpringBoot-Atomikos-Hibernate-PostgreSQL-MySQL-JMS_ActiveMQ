@@ -14,6 +14,7 @@ import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Properties;
 
+@SuppressWarnings("ContextJavaBeanUnresolvedMethodsInspection")
 @Configuration
 @DependsOn("transactionManager")
 @EnableJpaRepositories(basePackages = "com.miguel.distibuteddatabases.repository.direccion", entityManagerFactoryRef = "twoEntityManager")
@@ -41,9 +42,9 @@ public class DireccionConfig {
 
     @Bean(name = "twoEntityManager")
     @DependsOn("transactionManager")
-    public LocalContainerEntityManagerFactoryBean orderEntityManger() throws Throwable{
+    public LocalContainerEntityManagerFactoryBean orderEntityManger() {
 
-        HashMap<String,Object> properties = new HashMap<String, Object>();
+        HashMap<String,Object> properties = new HashMap<>();
         properties.put("hibernate.transaction.jta.platform", AtomikosJtaPlatform.class.getName());
         properties.put("javax.persistence.transactionType", "JTA");
 

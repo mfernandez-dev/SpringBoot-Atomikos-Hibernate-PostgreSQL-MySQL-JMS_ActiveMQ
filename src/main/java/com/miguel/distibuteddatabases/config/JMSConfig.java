@@ -13,8 +13,6 @@ import javax.jms.Queue;
 @EnableJms
 public class JMSConfig {
 
-    private String activeMqUrl = "tcp://localhost:61616";
-
     @Bean
     public Queue queue(){
         return new ActiveMQQueue("cola-insert");
@@ -23,7 +21,7 @@ public class JMSConfig {
     @Bean
     public ActiveMQConnectionFactory connectionFactory(){
         ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory();
-        factory.setBrokerURL(activeMqUrl);
+        factory.setBrokerURL("tcp://localhost:61616");
         factory.setTrustAllPackages(true);
         return factory;
     }

@@ -2,10 +2,11 @@ package com.miguel.distibuteddatabases.service;
 
 import com.miguel.distibuteddatabases.model.Direccion;
 import com.miguel.distibuteddatabases.model.Persona;
+import com.miguel.distibuteddatabases.repository.dto.DireccionDto;
 import com.miguel.distibuteddatabases.repository.dto.PersonaDto;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public interface InsertService {
 
@@ -17,9 +18,9 @@ public interface InsertService {
 
     PersonaDto edit(long id);
 
-    Optional<Direccion> editDir(long id);
+   DireccionDto editDir(long id);
 
-    List<Persona> mostrarPersona();
+    ArrayList mostrarPersona();
 
     List<Direccion> mostrarDireccion();
 

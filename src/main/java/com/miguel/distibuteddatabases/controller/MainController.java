@@ -1,8 +1,6 @@
 package com.miguel.distibuteddatabases.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.miguel.distibuteddatabases.model.Direccion;
-import com.miguel.distibuteddatabases.model.Persona;
 import com.miguel.distibuteddatabases.repository.dto.AllDataDto;
 import com.miguel.distibuteddatabases.repository.dto.DireccionDto;
 import com.miguel.distibuteddatabases.repository.dto.PersonaDto;
@@ -54,6 +52,13 @@ public class MainController {
         return mav;
     }
 
+    @RequestMapping(value = {"/edit/direccion"})
+    public ModelAndView editDir (@RequestParam("dirid") long id){
+        ModelAndView mav = new ModelAndView("editdir");
+        mav.addObject("direccion", insertService.editDir(id));
+        return mav;
+    }
+
     @RequestMapping("/publish")
     public ModelAndView publish (@ModelAttribute("all") AllDataDto all) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -66,7 +71,7 @@ public class MainController {
     }
 
     @RequestMapping(value = {"/editordeleteperson"})
-    public ModelAndView deletePers(@ModelAttribute("persona") PersonaDto personaDto) throws IOException{
+    public ModelAndView editOrDeletePerson(@ModelAttribute("persona") PersonaDto personaDto) throws IOException{
         ObjectMapper objectMapper = new ObjectMapper();
         String pers = objectMapper.writeValueAsString(personaDto);
         jmsTemplate.convertAndSend(queue, pers);
@@ -75,34 +80,12 @@ public class MainController {
         mav.addObject("direcciones", insertService.mostrarDireccion());
         return mav;
     }
-    //-------------------------------------------------------------------------------------------------------------
 
-    @RequestMapping(value = {"/process"})
-    public ModelAndView insert(@ModelAttribute("persona") Persona p, @ModelAttribute("direccion") Direccion d) {
-        if ((d.getCalle() != "" && d.getCalle() != null) && (p.getNombre() != "" && p.getNombre() != null))
-            insertService.save(p, d);
-        else {
-            if ((d.getCalle() == "" || d.getCalle() == null) && p.getNombre() != "" && p.getNombre() != null)
-                insertService.save(p);
-            else if (d.getCalle()!="" && d.getCalle() != null && (p.getNombre() == "" || p.getNombre() == null))
-                insertService.save(d);
-        }
-        ModelAndView mav = new ModelAndView("showall");
-        mav.addObject("personas", insertService.mostrarPersona());
-        mav.addObject("direcciones", insertService.mostrarDireccion());
-        return mav;
-    }
-
-    @RequestMapping(value = {"/edit/direccion"})
-    public ModelAndView editDir(@RequestParam("dirid") long id) {
-        ModelAndView mav = new ModelAndView("editdir");
-        mav.addObject("direccion", insertService.editDir(id));
-        return mav;
-    }
-
-    @RequestMapping(value = {"/delete/direccion"})
-    public ModelAndView deleteDir(@RequestParam("dirid") long id) {
-        insertService.deleteDir(id);
+    @RequestMapping(value = {"/editordeletedireccion"})
+    public ModelAndView editOrDeleteDireccion (@ModelAttribute("direccion") DireccionDto direccionDto) throws IOException{
+        ObjectMapper objectMapper = new ObjectMapper();
+        String dir = objectMapper.writeValueAsString(direccionDto);
+        jmsTemplate.convertAndSend(queue, dir);
         ModelAndView mav = new ModelAndView("showall");
         mav.addObject("personas", insertService.mostrarPersona());
         mav.addObject("direcciones", insertService.mostrarDireccion());

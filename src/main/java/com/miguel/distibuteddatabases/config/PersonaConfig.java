@@ -16,6 +16,7 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 import java.util.HashMap;
 
+@SuppressWarnings("ContextJavaBeanUnresolvedMethodsInspection")
 @Configuration
 @Primary
 @DependsOn("transactionManager")
@@ -44,7 +45,7 @@ public class PersonaConfig {
     @Bean(name = "oneEntityManager")
     @DependsOn("transactionManager")
     public LocalContainerEntityManagerFactoryBean bd2Entitymanger() throws Throwable{
-        HashMap<String,Object> properties = new HashMap<String,Object>();
+        HashMap<String,Object> properties = new HashMap<>();
         properties.put("hibernate.transaction.jta.platform",AtomikosJtaPlatform.class.getName());
         properties.put("javax.persistence.transactionType", "JTA");
 

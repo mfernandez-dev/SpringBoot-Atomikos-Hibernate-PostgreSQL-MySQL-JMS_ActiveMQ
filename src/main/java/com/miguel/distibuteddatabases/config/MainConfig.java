@@ -51,7 +51,7 @@ public class MainConfig {
     }
 
     @Bean(name = "atomikosTransactionManager")
-    public TransactionManager atomikosTransactionManager () throws Throwable{
+    public TransactionManager atomikosTransactionManager (){
         UserTransactionManager userTransactionManager = new UserTransactionManager();
         userTransactionManager.setForceShutdown(false);
 

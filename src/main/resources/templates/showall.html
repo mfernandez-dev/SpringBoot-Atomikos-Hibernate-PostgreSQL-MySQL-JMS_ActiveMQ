@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th = "http://www.thymeleaf.org">
+<html xmlns:th = "http://www.thymeleaf.org" lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Vista A</title>
@@ -45,7 +45,7 @@
         <td>
             <div th:with="editDir=@{/edit/direccion(dirid=${d.id})}">
                 <div th:with="deleteDir=@{/delete/direccion(dirid=${d.id})}">
-                <a th:href="${editDir}">Editar</a> || <a th:href="${deleteDir}">Borrar</a>
+                <a th:href="${editDir}">Editar</a>
             </div></div>
         </td>
     </tr>

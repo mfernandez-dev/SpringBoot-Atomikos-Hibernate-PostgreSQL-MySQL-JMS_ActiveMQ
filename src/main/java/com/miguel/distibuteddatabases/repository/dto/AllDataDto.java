@@ -1,5 +1,6 @@
 package com.miguel.distibuteddatabases.repository.dto;
 
+@SuppressWarnings("ALL")
 public class AllDataDto {
 
     private String accion;

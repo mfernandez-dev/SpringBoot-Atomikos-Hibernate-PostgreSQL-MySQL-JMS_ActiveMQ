@@ -2,6 +2,7 @@ package com.miguel.distibuteddatabases.model;
 
 import javax.persistence.*;
 
+@SuppressWarnings("unused")
 @Entity
 @Table(name = "direccion")
 public class Direccion {
@@ -24,6 +25,12 @@ public class Direccion {
     }
 
     public Direccion(String calle, int numero, String ciudad) {
+        this.calle = calle;
+        this.numero = numero;
+        this.ciudad = ciudad;
+    }
+    public Direccion(long id, String calle, int numero, String ciudad) {
+        this.id = id;
         this.calle = calle;
         this.numero = numero;
         this.ciudad = ciudad;

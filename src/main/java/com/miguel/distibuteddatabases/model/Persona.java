@@ -2,6 +2,7 @@ package com.miguel.distibuteddatabases.model;
 
 import javax.persistence.*;
 
+@SuppressWarnings("unused")
 @Entity
 @Table(name = "persona")
 public class Persona {

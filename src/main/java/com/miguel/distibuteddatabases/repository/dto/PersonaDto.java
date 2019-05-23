@@ -2,6 +2,7 @@ package com.miguel.distibuteddatabases.repository.dto;
 
 import java.io.Serializable;
 
+@SuppressWarnings("ALL")
 public class PersonaDto implements Serializable {
 
     private String accion;
@@ -15,7 +16,7 @@ public class PersonaDto implements Serializable {
     public PersonaDto() {
     }
 
-    public PersonaDto(String accion, Long id,String nombre, String apellido) {
+    public PersonaDto(String accion, long id,String nombre, String apellido) {
         this.accion = accion;
         this.id = id;
         this.nombre = nombre;
