@@ -47,6 +47,13 @@ public class MainController {
         return mav;
     }
 
+    @RequestMapping(value = {"/edit/persona"})
+    public ModelAndView editPersona(@RequestParam("personaid") long id) {
+        ModelAndView mav = new ModelAndView("editpers");
+        mav.addObject("persona",insertService.edit(id));
+        return mav;
+    }
+
     @RequestMapping("/publish")
     public ModelAndView publish (@ModelAttribute("all") AllDataDto all) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -58,6 +65,16 @@ public class MainController {
         return mav;
     }
 
+    @RequestMapping(value = {"/editordeleteperson"})
+    public ModelAndView deletePers(@ModelAttribute("persona") PersonaDto personaDto) throws IOException{
+        ObjectMapper objectMapper = new ObjectMapper();
+        String pers = objectMapper.writeValueAsString(personaDto);
+        jmsTemplate.convertAndSend(queue, pers);
+        ModelAndView mav = new ModelAndView("showall");
+        mav.addObject("personas", insertService.mostrarPersona());
+        mav.addObject("direcciones", insertService.mostrarDireccion());
+        return mav;
+    }
     //-------------------------------------------------------------------------------------------------------------
 
     @RequestMapping(value = {"/process"})
@@ -76,26 +93,10 @@ public class MainController {
         return mav;
     }
 
-    @RequestMapping(value = {"/edit/persona"})
-    public ModelAndView edit(@RequestParam("personaid") long id) {
-        ModelAndView mav = new ModelAndView("editpers");
-        mav.addObject("persona", insertService.edit(id));
-        return mav;
-    }
-
     @RequestMapping(value = {"/edit/direccion"})
     public ModelAndView editDir(@RequestParam("dirid") long id) {
         ModelAndView mav = new ModelAndView("editdir");
         mav.addObject("direccion", insertService.editDir(id));
-        return mav;
-    }
-
-    @RequestMapping(value = {"/delete/persona"})
-    public ModelAndView deletePers(@RequestParam("personaid") long id) {
-        insertService.deletePers(id);
-        ModelAndView mav = new ModelAndView("showall");
-        mav.addObject("personas", insertService.mostrarPersona());
-        mav.addObject("direcciones", insertService.mostrarDireccion());
         return mav;
     }
 

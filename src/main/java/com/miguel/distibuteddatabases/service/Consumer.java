@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.miguel.distibuteddatabases.model.Direccion;
 import com.miguel.distibuteddatabases.model.Persona;
 import com.miguel.distibuteddatabases.repository.dto.AllDataDto;
+import com.miguel.distibuteddatabases.repository.dto.PersonaDto;
 import com.miguel.distibuteddatabases.service.InsertService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
@@ -25,6 +26,21 @@ public class Consumer {
                 if (allDataDto.getAccion().equals("insert"))
                     insert(allDataDto);
             }
+            if (all.contains("edit") && all.contains("nombre")){
+                ObjectMapper objectMapper = new ObjectMapper();
+                PersonaDto personaDto = objectMapper.readValue(all, PersonaDto.class);
+                if (personaDto.getAccion().equals("edit"))
+                    edit(personaDto);
+            }
+
+            if (all.contains("delete") && all.contains("nombre")){
+                ObjectMapper objectMapper = new ObjectMapper();
+                PersonaDto personaDto = objectMapper.readValue(all, PersonaDto.class);
+                if(personaDto.getAccion().equals("delete"))
+                    delete(personaDto);
+            }
+
+
 
     }
 
@@ -38,5 +54,14 @@ public class Consumer {
                 insertService.save(p);
                 else if (p.getNombre().equals("") && !d.getCalle().equals(""))
                     insertService.save(d);
+    }
+
+    public void edit (PersonaDto personaDto){
+        Persona p = new Persona(personaDto.getId(),personaDto.getNombre(), personaDto.getApellido());
+        insertService.save(p);
+    }
+
+    public void delete (PersonaDto personaDto){
+        insertService.deletePers(personaDto.getId());
     }
 }

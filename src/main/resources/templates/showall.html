@@ -20,7 +20,7 @@
         <td>
             <div th:with="editPers=@{/edit/persona(personaid=${p.id})}">
                 <div th:with="deletePers=@{/delete/persona(personaid=${p.id})}">
-                <a th:href="${editPers}">Editar</a> || <a th:href="${deletePers}">Borrar</a>
+                <a th:href="${editPers}">Editar</a>
             </div></div>
         </td>
     </tr>

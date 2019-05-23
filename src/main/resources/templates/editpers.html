@@ -7,8 +7,14 @@
 <body>
 <h2>Inserccion</h2>
 
-<form action="#" th:action="@{/process}" method="post">
-    <p>Id: <input type="text" th:field="*{persona.id}"></p>
+<form action="#" th:action="@{/editordeleteperson}" method="post">
+    <p>Accion: <select th:field="*{persona.accion}">
+        <option value="default">--Select an option--</option>
+        <option value="edit">edit</option>
+        <option value="delete">delete</option>
+    </select></p>
+
+    <p>Id: <input type="text" th:field="*{persona.id}" readonly="readonly"></p>
     <p>Nombre: <input type="text" th:field="*{persona.nombre}"/>
     <p>Apellido: <input type="text" th:field="*{persona.apellido}"/>
         <button type="submit">Add</button>

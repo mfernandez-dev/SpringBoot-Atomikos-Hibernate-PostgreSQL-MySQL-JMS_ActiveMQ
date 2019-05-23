@@ -25,6 +25,12 @@ public class Persona {
         this.apellido = apellido;
     }
 
+    public Persona (Long id, String nombre, String apellido){
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+    }
+
     public long getId() {
         return id;
     }

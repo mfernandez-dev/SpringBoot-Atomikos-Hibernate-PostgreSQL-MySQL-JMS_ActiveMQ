@@ -4,6 +4,10 @@ import java.io.Serializable;
 
 public class PersonaDto implements Serializable {
 
+    private String accion;
+
+    private long id;
+
     private String nombre;
 
     private String apellido;
@@ -11,10 +15,20 @@ public class PersonaDto implements Serializable {
     public PersonaDto() {
     }
 
-    public PersonaDto(String nombre, String apellido) {
+    public PersonaDto(String accion, Long id,String nombre, String apellido) {
+        this.accion = accion;
+        this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
     }
+
+    public String getAccion() { return accion; }
+
+    public void setAccion(String accion) { this.accion = accion; }
+
+    public long getId() { return id; }
+
+    public void setId(Long id) { this.id = id; }
 
     public String getNombre() {
         return nombre;

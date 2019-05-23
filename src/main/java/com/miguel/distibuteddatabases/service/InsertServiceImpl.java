@@ -3,6 +3,7 @@ package com.miguel.distibuteddatabases.service;
 import com.miguel.distibuteddatabases.model.Direccion;
 import com.miguel.distibuteddatabases.model.Persona;
 import com.miguel.distibuteddatabases.repository.direccion.DireccionDao;
+import com.miguel.distibuteddatabases.repository.dto.PersonaDto;
 import com.miguel.distibuteddatabases.repository.persona.PersonaDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,8 +42,15 @@ public class InsertServiceImpl implements InsertService{
     }
 
     @Override
-    public Optional<Persona> edit(long id) {
-       return personaDao.findById(id);
+    public PersonaDto edit(long id) {
+       PersonaDto pers = new PersonaDto();
+       Optional<Persona> p = personaDao.findById(id);
+       Persona persona = p.get();
+
+       pers.setId(persona.getId());
+       pers.setNombre(persona.getNombre());
+       pers.setApellido(persona.getApellido());
+       return pers;
     }
 
     @Override
