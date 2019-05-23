@@ -64,10 +64,7 @@ public class MainController {
         ObjectMapper objectMapper = new ObjectMapper();
         String  allDataDto = objectMapper.writeValueAsString(all);
         jmsTemplate.convertAndSend(queue,allDataDto);
-        ModelAndView mav = new ModelAndView("showall");
-        mav.addObject("personas", insertService.mostrarPersona());
-        mav.addObject("direcciones", insertService.mostrarDireccion());
-        return mav;
+        return new ModelAndView("end");
     }
 
     @RequestMapping(value = {"/editordeleteperson"})
@@ -75,10 +72,7 @@ public class MainController {
         ObjectMapper objectMapper = new ObjectMapper();
         String pers = objectMapper.writeValueAsString(personaDto);
         jmsTemplate.convertAndSend(queue, pers);
-        ModelAndView mav = new ModelAndView("showall");
-        mav.addObject("personas", insertService.mostrarPersona());
-        mav.addObject("direcciones", insertService.mostrarDireccion());
-        return mav;
+        return new ModelAndView("end");
     }
 
     @RequestMapping(value = {"/editordeletedireccion"})
@@ -86,9 +80,6 @@ public class MainController {
         ObjectMapper objectMapper = new ObjectMapper();
         String dir = objectMapper.writeValueAsString(direccionDto);
         jmsTemplate.convertAndSend(queue, dir);
-        ModelAndView mav = new ModelAndView("showall");
-        mav.addObject("personas", insertService.mostrarPersona());
-        mav.addObject("direcciones", insertService.mostrarDireccion());
-        return mav;
+        return new ModelAndView("end");
     }
 }
