@@ -19,17 +19,24 @@ public class Consumer {
 
     @JmsListener(destination = "cola-insert")
     public void listener(String all) throws IOException {
-            ObjectMapper objectMapper = new ObjectMapper();
-            AllDataDto allDataDto = objectMapper.readValue(all, AllDataDto.class);
+            if (all.contains("insert")) {
+                ObjectMapper objectMapper = new ObjectMapper();
+                AllDataDto allDataDto = objectMapper.readValue(all, AllDataDto.class);
+                if (allDataDto.getAccion().equals("insert"))
+                    insert(allDataDto);
+            }
 
-            Persona p = new Persona (allDataDto.getNombre(), allDataDto.getApellido());
-            Direccion d = new Direccion (allDataDto.getCalle(), allDataDto.getNumero(), allDataDto.getCiudad());
+    }
 
-            if (!p.getNombre().equals("") && !d.getCalle().equals(""))
-                insertService.save(p,d);
-                else if (!p.getNombre().equals("") && d.getCalle().equals(""))
-                    insertService.save(p);
-                    else if (p.getNombre().equals("") && !d.getCalle().equals(""))
-                        insertService.save(d);
+    public void insert (AllDataDto allDataDto){
+        Persona p = new Persona (allDataDto.getNombre(), allDataDto.getApellido());
+        Direccion d = new Direccion (allDataDto.getCalle(), allDataDto.getNumero(), allDataDto.getCiudad());
+
+        if (!p.getNombre().equals("") && !d.getCalle().equals(""))
+            insertService.save(p,d);
+            else if (!p.getNombre().equals("") && d.getCalle().equals(""))
+                insertService.save(p);
+                else if (p.getNombre().equals("") && !d.getCalle().equals(""))
+                    insertService.save(d);
     }
 }

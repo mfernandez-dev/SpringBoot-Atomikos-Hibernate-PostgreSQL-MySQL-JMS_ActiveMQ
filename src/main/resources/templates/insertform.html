@@ -8,6 +8,12 @@
 <h2>Inserccion</h2>
 
 <form action="#" th:action="@{/publish}" method="post">
+
+    <p>Accion:  <select th:field="*{all.accion}">
+        <option value="default">--Select an option--</option>
+        <option value="insert">insert</option>
+    </select></p>
+
     <p>Nombre: <input type="text" th:field="*{all.nombre}"/>
     <p>Apellido: <input type="text" th:field="*{all.apellido}"/>
         <br/><br/>

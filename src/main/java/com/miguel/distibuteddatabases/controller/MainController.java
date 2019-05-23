@@ -40,6 +40,13 @@ public class MainController {
         return mav;
     }
 
+    @RequestMapping(value = {"/insert/all"})
+    public ModelAndView setData() {
+        ModelAndView mav = new ModelAndView("insertform");
+        mav.addObject("all", new AllDataDto());
+        return mav;
+    }
+
     @RequestMapping("/publish")
     public ModelAndView publish (@ModelAttribute("all") AllDataDto all) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
@@ -50,18 +57,8 @@ public class MainController {
         mav.addObject("direcciones", insertService.mostrarDireccion());
         return mav;
     }
-//    @RequestMapping("/publish")
-//    public ModelAndView publish (@ModelAttribute("persona") PersonaDto p, @ModelAttribute("direccion") DireccionDto d) throws IOException {
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        String  personita = objectMapper.writeValueAsString(p);
-//        String direccionita = objectMapper.writeValueAsString(d);
-//        jmsTemplate.convertAndSend(queue,personita);
-//        jmsTemplate.convertAndSend(queueb,direccionita);
-//        ModelAndView mav = new ModelAndView("showall");
-//        mav.addObject("personas", insertService.mostrarPersona());
-//        mav.addObject("direcciones", insertService.mostrarDireccion());
-//        return mav;
-//    }
+
+    //-------------------------------------------------------------------------------------------------------------
 
     @RequestMapping(value = {"/process"})
     public ModelAndView insert(@ModelAttribute("persona") Persona p, @ModelAttribute("direccion") Direccion d) {
@@ -78,21 +75,6 @@ public class MainController {
         mav.addObject("direcciones", insertService.mostrarDireccion());
         return mav;
     }
-
-    @RequestMapping(value = {"/insert/all"})
-    public ModelAndView setData() {
-        ModelAndView mav = new ModelAndView("insertform");
-        mav.addObject("all", new AllDataDto());
-        return mav;
-    }
-
-//    @RequestMapping(value = {"/insert/user"})
-//    public ModelAndView setData() {
-//        ModelAndView mav = new ModelAndView("insertform");
-//        mav.addObject("persona", new Persona());
-//        mav.addObject("direccion", new Direccion());
-//        return mav;
-//    }
 
     @RequestMapping(value = {"/edit/persona"})
     public ModelAndView edit(@RequestParam("personaid") long id) {

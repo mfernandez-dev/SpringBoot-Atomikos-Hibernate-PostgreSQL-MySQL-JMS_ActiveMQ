@@ -2,6 +2,8 @@ package com.miguel.distibuteddatabases.repository.dto;
 
 public class AllDataDto {
 
+    private String accion;
+
     private String nombre;
 
     private String apellido;
@@ -15,12 +17,21 @@ public class AllDataDto {
     public AllDataDto() {
     }
 
-    public AllDataDto(String nombre, String apellido, String calle, int numero, String ciudad) {
+    public AllDataDto( String accion, String nombre, String apellido, String calle, int numero, String ciudad) {
+        this.accion = accion;
         this.nombre = nombre;
         this.apellido = apellido;
         this.calle = calle;
         this.numero = numero;
         this.ciudad = ciudad;
+    }
+
+    public String getAccion() {
+        return accion;
+    }
+
+    public void setAccion(String accion) {
+        this.accion = accion;
     }
 
     public String getNombre() {
